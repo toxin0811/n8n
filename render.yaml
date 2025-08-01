@@ -1,36 +1,22 @@
 services:
   - type: web
-    name: n8n-service
-    plan: free
-    runtime: image              # 重點：用官方映像，不是 build Dockerfile
-    image:
-      url: docker.io/n8nio/n8n:latest
+    name: n8n
+    env: docker
+    plan: starter
+    region: singapore
+    dockerfilePath: ./Dockerfile
     envVars:
+      - key: N8N_HOST
+        value: n8n.onrender.com   # ← 改成你實際的 Render domain
+      - key: N8N_PORT
+        value: "5678"
+      - key: WEBHOOK_URL
+        value: https://n8n.onrender.com/
       - key: N8N_ENCRYPTION_KEY
-        generateValue: true
-      - key: DB_TYPE
-        value: postgres
-      - key: DB_HOST
-        fromDatabase:
-          name: n8n-db
-          property: host
-      - key: DB_PORT
-        fromDatabase:
-          name: n8n-db
-          property: port
-      - key: DB_DATABASE
-        fromDatabase:
-          name: n8n-db
-          property: database
-      - key: DB_USER
-        fromDatabase:
-          name: n8n-db
-          property: user
-      - key: DB_PASSWORD
-        fromDatabase:
-          name: n8n-db
-          property: password
-
-databases:
-  - name: n8n-db
-    plan: free
+        value: l1gqYDW4NGT3O8pA6T6+tiQm5FERbdsJEsaUp4lP2Yk=
+      - key: GENERIC_TIMEZONE
+        value: Asia/Taipei
+    disk:
+      name: n8n_data
+      mountPath: /home/node/.n8n
+      sizeGB: 1
