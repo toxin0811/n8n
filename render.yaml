@@ -2,7 +2,7 @@ services:
   - type: web
     name: n8n-service
     plan: free
-    runtime: image
+    runtime: image              # 重點：用官方映像，不是 build Dockerfile
     image:
       url: docker.io/n8nio/n8n:latest
     envVars:
@@ -30,18 +30,7 @@ services:
         fromDatabase:
           name: n8n-db
           property: password
-      # 如果你想用自己的網址作為 webhook 基礎 URL，可取消註解並替換：
-      # - key: WEBHOOK_URL
-      #   value: https://your-n8n-domain.onrender.com/
-      # 開啟基本認證 (建議啟用，替換下面帳號密碼)
-      # - key: N8N_BASIC_AUTH_ACTIVE
-      #   value: "true"
-      # - key: N8N_BASIC_AUTH_USER
-      #   value: yourUsername
-      # - key: N8N_BASIC_AUTH_PASSWORD
-      #   value: yourPassword
 
 databases:
   - name: n8n-db
     plan: free
-    # diskSizeGB: 5  # 如需更大空間，取消註解並調整數值
