@@ -7,11 +7,11 @@ services:
     dockerfilePath: ./Dockerfile
     envVars:
       - key: N8N_HOST
-        value: n8n-o15o.onrender.com   # ← 改成你實際的 Render domain
+        value: n8n-np50.onrender.com   # ← 改成你實際的 Render domain
       - key: N8N_PORT
         value: "5678"
       - key: WEBHOOK_URL
-        value: https://n8n-o15o.onrender.com/
+        value: https://n8n-np50.onrender.com
       - key: N8N_ENCRYPTION_KEY
         value: l1gqYDW4NGT3O8pA6T6+tiQm5FERbdsJEsaUp4lP2Yk=
       - key: GENERIC_TIMEZONE
